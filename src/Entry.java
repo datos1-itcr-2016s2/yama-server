@@ -1,24 +1,40 @@
 
 
-    // internal nodes: only use key and next
-    // external nodes: only use key and value
+    // internal nodes: only use content and next
+    // external nodes: only use content and route
     public class Entry {
-        private Comparable key;
-        private final Object val;
+        private Comparable content;
+        public String[] route;
+        public int time;
         private Node next;     // helper field to iterate over array entries
-        public Entry(Comparable key, Object val, Node next) {
-            this.setKey(key);
-            this.val  = val;
+        public Entry(Comparable content, String[] route, int time, Node next) {
+            this.setContent(content);
+            this.route  = route;
+            this.time = time;
             this.setNext(next);
         }
-		public Comparable getKey() {
-			return key;
+		public Comparable getContent() {
+			return content;
 		}
-		public void setKey(Comparable key) {
-			this.key = key;
+		public String getRoute() {
+			String result = "[";
+			for(int i=0; i<route.length; i++){
+				result += route[i];
+				if(i != route.length-1){
+					result += ", ";
+				}
+				else{result += ']';}
+			}
+			return result;
 		}
-		public Object getVal() {
-			return val;
+		public String getTime() {
+			return time + "s";
+		}
+		public void setContent(Comparable content) {
+			this.content = content;
+		}
+		public Object getroute() {
+			return route;
 		}
 		public Node getNext() {
 			return next;
